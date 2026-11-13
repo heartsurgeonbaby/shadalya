@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080817">
+<title>SHADOW X ALYA | BETA 0.6</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Bangers&family=Rajdhani:wght@400;700&display=swap');
+
+:root {
+  --red: #ff1744;
+  --blue: #00d9ff;
+  --purple: #a335ff;
+  --dark: #080817;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--dark);
+  color: white;
+  font-family: 'Rajdhani', sans-serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 15% 20%, #132c70, transparent 40%),
+    radial-gradient(circle at 85% 30%, #620b49, transparent 40%),
+    linear-gradient(145deg, #050510, #101027, #090817);
+}
+
+#particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    radial-gradient(#00d9ff 1px, transparent 1px),
+    radial-gradient(#ff1744 1px, transparent 1px);
+  background-size: 65px 65px, 100px 100px;
+  animation: stars 12s linear infinite;
+  opacity: .35;
+}
+
+@keyframes stars {
+  to { background-position: 300px 200px, -200px 300px; }
+}
+
+.scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  background: repeating-linear-gradient(
+    transparent 0px,
+    transparent 3px,
+    rgba(0,0,0,.12) 4px
+  );
+}
+
+header {
+  padding: 18px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgba(0,217,255,.35);
+  background: rgba(5,5,20,.95);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.logo {
+  font-family: Orbitron;
+  font-weight: 900;
+  font-size: 22px;
+  text-shadow: 3px 3px var(--red), -2px -2px var(--blue);
+}
+
+.logo span { color: var(--red); }
+
+nav {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+nav a:hover { color: var(--blue); }
+
+.hero {
+  min-height: 620px;
+  padding: 100px 8%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "X";
+  position: absolute;
+  right: 8%;
+  top: 10%;
+  font-family: Orbitron;
+  font-size: 35vw;
+  font-weight: 900;
+  color: rgba(0,217,255,.045);
+  pointer-events: none;
+}
+
+.beta {
+  display: inline-block;
+  width: fit-content;
+  color: #fff;
+  background: linear-gradient(90deg, #ff1744, #a335ff);
+  padding: 10px 18px;
+  border: 1px solid var(--blue);
+  box-shadow: 0 0 20px var(--red);
+  font-family: Orbitron;
+  letter-spacing: 4px;
+  font-size: 15px;
+  margin-bottom: 25px;
+  animation: betaGlow 2s infinite alternate;
+}
+
+@keyframes betaGlow {
+  to { box-shadow: 0 0 30px var(--blue); }
+}
+
+.hero h1 {
+  font-family: Bangers;
+  font-size: clamp(65px, 12vw, 130px);
+  line-height: .95;
+  letter-spacing: 4px;
+  text-shadow: 5px 5px var(--red), -3px -3px var(--blue);
+  animation: glow 3s infinite alternate;
+}
+
+@keyframes glow {
+  to { filter: brightness(1.5); }
+}
+
+.hero h2 {
+  font-family: Orbitron;
+  color: var(--blue);
+  margin-top: 30px;
+  font-size: clamp(20px, 4vw, 32px);
+  letter-spacing: 5px;
+}
+
+.hero p {
+  margin-top: 15px;
+  font-size: 20px;
+  color: #c5c5e8;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 35px;
+}
+
+.btn {
+  border: 2px solid var(--blue);
+  padding: 14px 27px;
+  background: transparent;
+  color: white;
+  font-family: Orbitron;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  transition: .25s;
+}
+
+.btn.primary {
+  background: var(--red);
+  border-color: var(--red);
+}
+
+.btn:hover {
+  background: var(--blue);
+  color: black;
+  box-shadow: 0 0 25px var(--blue);
+  transform: translateY(-4px);
+}
+
+section { padding: 75px 8%; }
+
+.section-title {
+  font-family: Orbitron;
+  font-size: clamp(25px, 5vw, 40px);
+  margin-bottom: 12px;
+}
+
+.section-title span { color: var(--red); }
+
+.subtitle {
+  color: #aaaacb;
+  margin-bottom: 35px;
+  font-size: 18px;
+}
+
+.multiplayer {
+  background: linear-gradient(120deg, rgba(0,217,255,.12), rgba(255,23,68,.12));
+  border-top: 2px solid var(--blue);
+  border-bottom: 2px solid var(--red);
+}
+
+.multiplayer-banner {
+  font-family: Orbitron;
+  font-size: clamp(30px, 7vw, 65px);
+  font-weight: 900;
+  color: var(--blue);
+  text-shadow: 0 0 15px var(--blue), 4px 4px var(--red);
+  margin-bottom: 25px;
+}
+
+.server-panel {
+  border: 1px solid var(--blue);
+  background: rgba(5,10,30,.8);
+  padding: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.server-status {
+  color: #54ff94;
+  font-family: Orbitron;
+  font-size: 13px;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  background: #54ff94;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #54ff94;
+  margin-right: 8px;
+}
+
+.gta-section {
+  background:
+    linear-gradient(120deg, rgba(255,23,68,.16), rgba(163,53,255,.14)),
+    #080817;
+  border-top: 2px solid var(--red);
+  border-bottom: 2px solid var(--purple);
+}
+
+.gta-title {
+  font-family: Bangers;
+  font-size: clamp(65px, 13vw, 120px);
+  color: #ffcf33;
+  letter-spacing: 5px;
+  text-shadow: 5px 5px #111, 0 0 25px #ff1744;
+}
+
+.gta-subtitle {
+  color: white;
+  font-family: Orbitron;
+  font-size: 18px;
+  letter-spacing: 4px;
+}
+
+.video-section { background: rgba(0,0,0,.25); }
+
+.player {
+  border: 2px solid var(--blue);
+  background: #03030b;
+  padding: 10px;
+  box-shadow: 0 0 30px rgba(0,217,255,.15);
+}
+
+video {
+  display: block;
+  width: 100%;
+  max-height: 600px;
+  background: black;
+  object-fit: contain;
+}
+
+
+
+
+
+.comic-section {
+  background: linear-gradient(135deg, #101025, #190c24);
+}
+
+.comic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 25px;
+}
+
+.comic-card {
+  background: white;
+  color: black;
+  padding: 10px;
+  transform: rotate(-1deg);
+  transition: .3s;
+  box-shadow: 7px 7px 0 var(--red);
+  cursor: pointer;
+}
+
+.comic-card:nth-child(even) {
+  transform: rotate(1deg);
+  box-shadow: 7px 7px 0 var(--blue);
+}
+
+.comic-card:hover {
+  transform: scale(1.04);
+}
+
+.comic-card img {
+  width: 100%;
+  display: block;
+  max-height: 320px;
+  object-fit: contain;
+  background: #171727;
+}
+
+.comic-card h3 {
+  font-family: Bangers;
+  font-size: 25px;
+  padding: 12px 5px 5px;
+}
+
+.comic-card p { padding: 0 5px 10px; }
+
+/* COMIC VIEWER */
+
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,.97);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+  touch-action: none;
+}
+
+.lightbox.open {
+  display: flex;
+}
+
+.viewer-top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  color: var(--blue);
+  font-family: Orbitron;
+  font-size: 13px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.viewer-stage {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  border: 1px solid rgba(0,217,255,.2);
+}
+
+.viewer-stage.dragging { cursor: grabbing; }
+
+.lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border: 2px solid var(--blue);
+  box-shadow: 0 0 25px var(--purple);
+  transform-origin: center center;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.viewer-controls {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  padding: 12px 5px;
+  background: #080817;
+  border-top: 1px solid var(--blue);
+}
+
+.viewer-btn {
+  background: #16162e;
+  color: white;
+  border: 1px solid var(--blue);
+  padding: 12px 16px;
+  font-family: Orbitron;
+  font-size: 12px;
+  cursor: pointer;
+  min-height: 44px;
+  border-radius: 4px;
+}
+
+.viewer-btn:hover {
+  background: var(--blue);
+  color: black;
+}
+
+.zoom-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--blue);
+  font-family: Orbitron;
+  font-size: 11px;
+}
+
+#zoomSlider {
+  width: 130px;
+  accent-color: var(--red);
+  cursor: pointer;
+}
+
+#zoomValue {
+  min-width: 43px;
+}
+
+.viewer-hint {
+  color: #aaaacb;
+  font-size: 12px;
+  padding: 5px;
+  text-align: center;
+}
+
+.close {
+  color: white;
+  font-size: 32px;
+  cursor: pointer;
+  border: 1px solid var(--red);
+  padding: 4px 13px;
+  background: #220b19;
+}
+
+#imageError {
+  display: none;
+  color: var(--red);
+  text-align: center;
+  padding: 20px;
+  font-family: Orbitron;
+}
+
+.game-panel {
+  border: 2px solid var(--red);
+  padding: 30px;
+  text-align: center;
+  background: rgba(20,5,25,.7);
+}
+
+.game-panel h3 {
+  font-family: Orbitron;
+  margin-bottom: 15px;
+}
+
+#score {
+  font-family: Orbitron;
+  color: var(--blue);
+  font-size: 35px;
+  margin: 15px;
+}
+
+#target {
+  font-size: 45px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none;
+  margin: 20px auto;
+  animation: bounce .6s infinite alternate;
+}
+
+@keyframes bounce {
+  to { transform: translateY(-10px) rotate(15deg); }
+}
+
+footer {
+  padding: 35px 8%;
+  background: #04040c;
+  border-top: 2px solid var(--red);
+  text-align: center;
+  color: #8585a9;
+}
+
+footer strong {
+  color: var(--blue);
+  font-family: Orbitron;
+}
+
+@media(max-width:650px) {
+  header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  nav { justify-content: center; }
+
+  .hero {
+    min-height: 550px;
+    padding: 75px 7%;
+  }
+
+  section { padding: 55px 6%; }
+
+  .viewer-btn {
+    padding: 12px;
+    font-size: 10px;
+  }
+
+  #zoomSlider { width: 90px; }
+
+  .viewer-top { font-size: 10px; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* FIXED VIEWER LAYOUT: centered comic page with controls kept on-screen. */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  padding: max(8px, env(safe-area-inset-top))
+           max(8px, env(safe-area-inset-right))
+           max(8px, env(safe-area-inset-bottom))
+           max(8px, env(safe-area-inset-left));
+  overflow: hidden;
+  background: rgba(0,0,0,.97);
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  gap: 6px;
+  touch-action: none;
+}
+.lightbox.open { display: grid; }
+.viewer-top, .viewer-controls, .viewer-hint {
+  width: 100%;
+  min-width: 0;
+  flex-shrink: 0;
+}
+.viewer-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.lightbox img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  margin: auto;
+  object-fit: contain;
+  transform-origin: center center;
+}
+.viewer-controls {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 4px;
+  background: #080817;
+  border-top: 1px solid var(--blue);
+}
+.viewer-hint {
+  position: relative;
+  z-index: 2;
+  padding: 2px 4px;
+  line-height: 1.3;
+  font-size: 11px;
+  text-align: center;
+}
+
+/* Social-media portrait layout (9:16) for every video in the playlist. */
+.video-frame {
+  width: min(100%, 360px);
+  height: min(72vh, 680px);
+  aspect-ratio: 9 / 16;
+  margin: 0 auto;
+  background: #000;
+  border: 1px solid rgba(0,217,255,.35);
+  overflow: hidden;
+}
+.video-frame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: contain;
+  background: #000;
+}
+.multiplayer-banner {
+  display: inline-block;
+  padding: 4px 14px;
+  border-left: 6px solid var(--red);
+  border-right: 6px solid var(--red);
+  background: rgba(0,217,255,.08);
+}
+.gta-title {
+  display: inline-block;
+  padding: 0 12px;
+  background: linear-gradient(transparent 58%, rgba(255,207,51,.16) 58%);
+}
+.beta {
+  position: relative;
+  z-index: 1;
+}
+.comic-card img {
+  width: 100%;
+  height: 320px;
+  margin: 0 auto;
+  object-fit: contain;
+  object-position: center;
+  background: #171727;
+}
+
+/* Lower-end PC mode: remove expensive decorative effects. */
+@media (max-width: 900px), (prefers-reduced-motion: reduce) {
+  #particles { animation: none !important; }
+  .scanlines { display: none !important; }
+  .hero h1, .beta, #target { animation: none !important; }
+  .btn, .comic-card { transition: none !important; }
+}
+@media (max-height: 560px) {
+  .viewer-hint { display: none; }
+  .viewer-controls { gap: 5px; padding: 4px; }
+  .viewer-btn { min-height: 36px; padding: 7px 9px; }
+}
+
+
+/* SOCIAL VIDEO FEED: one post per video, stacked vertically. */
+.social-feed {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.social-post {
+  width: 100%;
+  overflow: hidden;
+  background: #101024;
+  border: 1px solid rgba(0,217,255,.45);
+  border-radius: 10px;
+  box-shadow: 0 5px 18px rgba(0,0,0,.28);
+}
+.post-header {
+  min-height: 66px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+}
+.post-avatar {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: white;
+  font-family: Orbitron, sans-serif;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--red), var(--purple), var(--blue));
+}
+.post-account {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-family: Orbitron, sans-serif;
+  font-size: 11px;
+}
+.post-account span {
+  color: #9da4c9;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+.post-tag {
+  margin-left: auto;
+  padding: 5px 8px;
+  color: white;
+  background: linear-gradient(90deg, var(--red), var(--purple));
+  border: 1px solid var(--blue);
+  border-radius: 4px;
+  font: 900 10px Orbitron, sans-serif;
+  letter-spacing: 1px;
+}
+.video-frame {
+  width: min(100%, 420px);
+  height: auto;
+  aspect-ratio: 9 / 16;
+  max-height: 74vh;
+  margin: 0 auto;
+  background: #000;
+  overflow: hidden;
+}
+.video-frame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: contain;
+  background: #000;
+}
+.post-caption {
+  padding: 13px 15px 16px;
+  color: #d8d8ef;
+  font-size: 15px;
+  line-height: 1.45;
+}
+.post-caption strong {
+  color: var(--blue);
+  font-family: Orbitron, sans-serif;
+  font-size: 11px;
+  margin-right: 6px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="particles"></div>
+<div class="scanlines"></div>
+
+<header>
+  <div class="logo">SHADOW <span>X</span> ALYA</div>
+  <nav>
+    <a href="#home">HOME</a>
+    <a href="#multiplayer">MULTIPLAYER</a>
+    <a href="#gta">GTA</a>
+    <a href="#videos">VIDEOS</a>
+    <a href="#comics">COMICS</a>
+    <a href="#game">MINIGAME</a>
+  </nav>
+</header>
+
+<main>
+
+<div class="hero" id="home">
+
+  <div class="beta">⚡ PROJECT BETA 0.6 ⚡</div>
+
+  <h1>SHADOW<br>X ALYA</h1>
+
+  <h2>WELCOME TO MULTIPLAYER</h2>
+
+  <p>
+    SPEED. SECRETS. SUPERHEROES. CHAOS.<br>
+    One universe. Three worlds. Unlimited possibilities.
+  </p>
+
+  <div class="buttons">
+    <a href="#videos" class="btn primary">▶ WATCH VIDEOS</a>
+    <a href="#comics" class="btn">OPEN COMIC ARCHIVE</a>
+    <a href="#gta" class="btn">GTA WORLD</a>
+  </div>
+
+</div>
+
+<section class="multiplayer" id="multiplayer">
+
+  <h2 class="section-title">MULTIPLAYER <span>ZONE</span></h2>
+
+  <div class="multiplayer-banner">
+    MULTIPLAYER
+  </div>
+
+  <p class="subtitle">
+    Welcome to the Shadow X Alya digital universe.
+  </p>
+
+  <div class="server-panel">
+
+    <div>
+      <h3>SHADOW X ALYA // BETA SERVER</h3>
+      <p>Experimental multiplayer lobby</p>
+    </div>
+
+    <div>
+      <div class="server-status">
+        <span class="status-dot"></span>SYSTEM ONLINE
+      </div>
+      <p>BUILD: 0.6</p>
+    </div>
+
+    <button class="btn primary" onclick="joinServer()">
+      JOIN LOBBY
+    </button>
+
+  </div>
+
+  <p id="lobbyMessage" style="margin-top:20px;color:var(--blue)">
+    Waiting for player connection...
+  </p>
+
+</section>
+
+<section class="gta-section" id="gta">
+
+  <div class="gta-title">GTA WORLD</div>
+
+  <div class="gta-subtitle">
+    GRAND THEFT ADVENTURE
+  </div>
+
+  <p class="subtitle" style="margin-top:20px">
+    THE OPEN WORLD EXPANSION OF SHADOW X ALYA.
+    MISSIONS. CARS. CHAOS. FREEDOM.
+  </p>
+
+  <a href="#videos" class="btn primary">
+    EXPLORE DATABASE
+  </a>
+
+</section>
+
+<section class="video-section" id="videos">
+
+  <h2 class="section-title">VIDEO <span>FEED</span></h2>
+
+  <p class="subtitle">
+    Scroll through every video, presented as an individual social-media post.
+  </p>
+
+  <div class="social-feed">
+
+    <article class="social-post">
+      <div class="post-header">
+        <div class="post-avatar">SX</div>
+        <div class="post-account">
+          <strong>SHADOW X ALYA</strong>
+          <span>BETA VIDEO 001</span>
+        </div>
+        <span class="post-tag">BETA</span>
+      </div>
+      <div class="video-frame">
+        <video controls playsinline preload="none">
+          <source src="2026-04-17 18-31-05.mp4" type="video/mp4">
+          Your browser does not support video.
+        </video>
+      </div>
+      <div class="post-caption">
+        <strong>SHADOW X ALYA</strong>
+        First clip from the project. #Beta #Multiplayer #GTA
+      </div>
+    </article>
+
+    <article class="social-post">
+      <div class="post-header">
+        <div class="post-avatar">SX</div>
+        <div class="post-account">
+          <strong>SHADOW X ALYA</strong>
+          <span>BETA VIDEO 002</span>
+        </div>
+        <span class="post-tag">BETA</span>
+      </div>
+      <div class="video-frame">
+        <video controls playsinline preload="none">
+          <source src="2026-11-13 19-52-42.mp4" type="video/mp4">
+          Your browser does not support video.
+        </video>
+      </div>
+      <div class="post-caption">
+        <strong>SHADOW X ALYA</strong>
+        Another moment from the universe. #Beta #Multiplayer #GTA
+      </div>
+    </article>
+
+    <article class="social-post">
+      <div class="post-header">
+        <div class="post-avatar">SX</div>
+        <div class="post-account">
+          <strong>SHADOW X ALYA</strong>
+          <span>BETA VIDEO 003</span>
+        </div>
+        <span class="post-tag">BETA</span>
+      </div>
+      <div class="video-frame">
+        <video controls playsinline preload="none">
+          <source src="2026-11-13 19-13-19.mp4" type="video/mp4">
+          Your browser does not support video.
+        </video>
+      </div>
+      <div class="post-caption">
+        <strong>SHADOW X ALYA</strong>
+        More action from the project. #Beta #Multiplayer #GTA
+      </div>
+    </article>
+
+    <article class="social-post">
+      <div class="post-header">
+        <div class="post-avatar">SX</div>
+        <div class="post-account">
+          <strong>SHADOW X ALYA</strong>
+          <span>BETA VIDEO 004</span>
+        </div>
+        <span class="post-tag">BETA</span>
+      </div>
+      <div class="video-frame">
+        <video controls playsinline preload="none">
+          <source src="2026-11-13 19-48-33.mp4" type="video/mp4">
+          Your browser does not support video.
+        </video>
+      </div>
+      <div class="post-caption">
+        <strong>SHADOW X ALYA</strong>
+        Latest clip in the feed. #Beta #Multiplayer #GTA
+      </div>
+    </article>
+
+  </div>
+
+</section>
+
+<section class="comic-section" id="comics">
+
+  <h2 class="section-title">COMIC <span>ARCHIVE</span></h2>
+
+  <p class="subtitle">
+    Tap any comic page to open the interactive reader.
+  </p>
+
+  <div class="comic-grid">
+
+    <div class="comic-card" onclick="openImage(0)">
+      <img src="page001.png" alt="Comic page 001">
+      <h3>ISSUE 001</h3>
+      <p>THE BEGINNING</p>
+    </div>
+
+    <div class="comic-card" onclick="openImage(1)">
+      <img src="page002.png" alt="Comic page 002">
+      <h3>ISSUE 002</h3>
+      <p>SHADOW AWAKENS</p>
+    </div>
+
+    <div class="comic-card" onclick="openImage(2)">
+      <img src="page003.png" alt="Comic page 003">
+      <h3>ISSUE 003</h3>
+      <p>HEROES COLLIDE</p>
+    </div>
+
+    <div class="comic-card" onclick="openImage(3)">
+      <img src="page004.png" alt="Comic page 004">
+      <h3>ISSUE 004</h3>
+      <p>THE FINAL MISSION</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FULL SCREEN COMIC READER -->
+
+<div class="lightbox" id="lightbox" role="dialog"
+     aria-modal="true" aria-label="Comic reader">
+
+  <div class="viewer-top">
+
+    <div id="pageCounter">PAGE 1 / 4</div>
+
+    <button class="close" onclick="closeImage()" aria-label="Close reader">
+      &times;
+    </button>
+
+  </div>
+
+  <div class="viewer-stage" id="viewerStage">
+
+    <img id="lightboxImage" src="" alt="Expanded comic page"
+         draggable="false">
+
+    <div id="imageError">
+      IMAGE NOT FOUND. CHECK THE IMAGE FILE LOCATION.
+    </div>
+
+  </div>
+
+  <div class="viewer-controls">
+
+    <button class="viewer-btn" onclick="previousPage()">◀ PREV</button>
+
+    <button class="viewer-btn" onclick="nextPage()">NEXT ▶</button>
+
+    <button class="viewer-btn" onclick="changeZoom(-0.25)">− ZOOM</button>
+
+    <button class="viewer-btn" onclick="resetZoom()">RESET</button>
+
+    <button class="viewer-btn" onclick="changeZoom(0.25)">+ ZOOM</button>
+
+    <div class="zoom-control">
+      <label for="zoomSlider">ZOOM</label>
+      <input id="zoomSlider" type="range"
+             min="1" max="4" step="0.05" value="1">
+      <span id="zoomValue">100%</span>
+    </div>
+
+  </div>
+
+  <div class="viewer-hint">
+    PC: Drag / Mouse Wheel / Arrow Keys / + / -
+    <br>
+    ANDROID: Pinch to Zoom / Drag to Pan / Swipe to Change Page
+  </div>
+
+</div>
+
+<section id="game">
+
+  <h2 class="section-title">CHAOS <span>CHALLENGE</span></h2>
+
+  <p class="subtitle">
+    Test your reflexes. Catch the energy orb!
+  </p>
+
+  <div class="game-panel">
+
+    <h3>SHADOW SPEED CHALLENGE</h3>
+
+    <p>Press START and catch the glowing orb!</p>
+
+    <div id="score">SCORE: 0</div>
+
+    <button class="btn primary" onclick="startGame()">
+      START GAME
+    </button>
+
+    <button id="target" onclick="catchOrb()">🔵</button>
+
+    <p id="gameMessage" style="margin-top:15px;color:var(--blue)">
+      READY PLAYER ONE?
+    </p>
+
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+
+  <strong>SHADOW X ALYA // BETA 0.6</strong>
+
+  <p>WELCOME TO MULTIPLAYER</p>
+
+  <p>GTA WORLD × SUPERHERO COMICS × SPEED</p>
+
+  <p>© 2026 SHADOW X ALYA FAN PROJECT</p>
+
+</footer>
+
+<script>
+
+/* VIDEOS: each social post has its own independent player. */
+
+/* MULTIPLAYER LOBBY */
+
+function joinServer() {
+
+  const message = document.getElementById("lobbyMessage");
+
+  message.textContent = "CONNECTING TO SHADOW X ALYA SERVER...";
+
+  setTimeout(() => {
+
+    message.textContent =
+      "⚡ PLAYER CONNECTED! WELCOME TO THE LOBBY!";
+
+  }, 1200);
+
+}
+
+
+/* COMIC READER */
+
+const comicPages = [
+  "page001.png",
+  "page002.png",
+  "page003.png",
+  "page004.png"
+];
+
+let currentPage = 0;
+let zoom = 1;
+let panX = 0;
+let panY = 0;
+
+const lightbox = document.getElementById("lightbox");
+const viewerStage = document.getElementById("viewerStage");
+const lightboxImage = document.getElementById("lightboxImage");
+const zoomSlider = document.getElementById("zoomSlider");
+
+function openImage(index) {
+
+  currentPage = index;
+
+  lightbox.classList.add("open");
+
+  document.body.style.overflow = "hidden";
+
+  resetZoom();
+  displayPage();
+
+}
+
+function closeImage() {
+
+  lightbox.classList.remove("open");
+
+  document.body.style.overflow = "";
+
+}
+
+function displayPage() {
+
+  const image = comicPages[currentPage];
+
+  lightboxImage.style.display = "block";
+
+  document.getElementById("imageError").style.display = "none";
+
+  lightboxImage.src = image;
+
+  lightboxImage.alt = "Comic page " + (currentPage + 1);
+
+  document.getElementById("pageCounter").textContent =
+    "PAGE " + (currentPage + 1) + " / " + comicPages.length;
+
+  resetZoom();
+
+}
+
+lightboxImage.addEventListener("error", function() {
+
+  this.style.display = "none";
+
+  document.getElementById("imageError").style.display = "block";
+
+});
+
+lightboxImage.addEventListener("load", function() {
+
+  this.style.display = "block";
+
+  document.getElementById("imageError").style.display = "none";
+
+});
+
+function nextPage() {
+
+  currentPage = (currentPage + 1) % comicPages.length;
+
+  displayPage();
+
+}
+
+function previousPage() {
+
+  currentPage =
+    (currentPage - 1 + comicPages.length) % comicPages.length;
+
+  displayPage();
+
+}
+
+
+/* ZOOM SYSTEM */
+
+function updateTransform() {
+
+  lightboxImage.style.transform =
+    `translate(${panX}px, ${panY}px) scale(${zoom})`;
+
+  zoomSlider.value = zoom;
+
+  document.getElementById("zoomValue").textContent =
+    Math.round(zoom * 100) + "%";
+
+}
+
+function changeZoom(amount) {
+
+  zoom = Math.max(1, Math.min(4, zoom + amount));
+
+  if (zoom === 1) {
+    panX = 0;
+    panY = 0;
+  }
+
+  updateTransform();
+
+}
+
+function resetZoom() {
+
+  zoom = 1;
+  panX = 0;
+  panY = 0;
+
+  updateTransform();
+
+}
+
+zoomSlider.addEventListener("input", function() {
+
+  zoom = Number(this.value);
+
+  if (zoom === 1) {
+    panX = 0;
+    panY = 0;
+  }
+
+  updateTransform();
+
+});
+
+
+/* MOUSE WHEEL ZOOM */
+
+viewerStage.addEventListener("wheel", function(e) {
+
+  e.preventDefault();
+
+  changeZoom(e.deltaY < 0 ? 0.15 : -0.15);
+
+}, { passive: false });
+
+
+/* MOUSE AND TOUCH DRAG / PINCH */
+
+let pointers = new Map();
+
+let lastX = 0;
+let lastY = 0;
+let lastDistance = 0;
+let startX = 0;
+let startY = 0;
+let moved = false;
+
+function distance(a, b) {
+
+  return Math.hypot(
+    a.x - b.x,
+    a.y - b.y
+  );
+
+}
+
+viewerStage.addEventListener("pointerdown", function(e) {
+
+  if (e.pointerType === "mouse" && e.button !== 0) return;
+
+  viewerStage.setPointerCapture(e.pointerId);
+
+  pointers.set(e.pointerId, {
+    x: e.clientX,
+    y: e.clientY
+  });
+
+  if (pointers.size === 1) {
+
+    lastX = e.clientX;
+    lastY = e.clientY;
+
+    startX = e.clientX;
+    startY = e.clientY;
+
+    moved = false;
+
+    viewerStage.classList.add("dragging");
+
+  }
+
+  if (pointers.size === 2) {
+
+    const pts = [...pointers.values()];
+
+    lastDistance = distance(pts[0], pts[1]);
+
+  }
+
+});
+
+viewerStage.addEventListener("pointermove", function(e) {
+
+  if (!pointers.has(e.pointerId)) return;
+
+  const previous = pointers.get(e.pointerId);
+
+  pointers.set(e.pointerId, {
+    x: e.clientX,
+    y: e.clientY
+  });
+
+  if (pointers.size === 1) {
+
+    const dx = e.clientX - lastX;
+    const dy = e.clientY - lastY;
+
+    if (Math.abs(e.clientX - startX) > 5 ||
+        Math.abs(e.clientY - startY) > 5) {
+      moved = true;
+    }
+
+    if (zoom > 1) {
+
+      panX += dx;
+      panY += dy;
+
+      updateTransform();
+
+    }
+
+    lastX = e.clientX;
+    lastY = e.clientY;
+
+  }
+
+  if (pointers.size === 2) {
+
+    const pts = [...pointers.values()];
+
+    const newDistance = distance(pts[0], pts[1]);
+
+    if (lastDistance > 0) {
+
+      zoom = Math.max(
+        1,
+        Math.min(4, zoom * (newDistance / lastDistance))
+      );
+
+      if (zoom === 1) {
+        panX = 0;
+        panY = 0;
+      }
+
+      updateTransform();
+
+    }
+
+    lastDistance = newDistance;
+
+  }
+
+});
+
+function removePointer(e) {
+
+  if (!pointers.has(e.pointerId)) return;
+
+  pointers.delete(e.pointerId);
+
+  if (pointers.size < 2) lastDistance = 0;
+
+  if (pointers.size === 0) {
+
+    viewerStage.classList.remove("dragging");
+
+    // Swipe to change pages on touchscreens.
+    if (
+      !moved &&
+      e.pointerType !== "mouse"
+    ) return;
+
+    if (e.pointerType !== "mouse" && zoom === 1) {
+
+      const dx = e.clientX - startX;
+
+      if (Math.abs(dx) > 65) {
+
+        if (dx < 0) nextPage();
+        else previousPage();
+
+      }
+
+    }
+
+  }
+
+}
+
+viewerStage.addEventListener("pointerup", removePointer);
+viewerStage.addEventListener("pointercancel", removePointer);
+
+
+/* KEYBOARD CONTROLS */
+
+document.addEventListener("keydown", function(e) {
+
+  if (!lightbox.classList.contains("open")) {
+
+    if (e.key === "Escape") closeImage();
+
+    return;
+
+  }
+
+  if (e.key === "Escape") closeImage();
+
+  if (e.key === "ArrowRight") nextPage();
+
+  if (e.key === "ArrowLeft") previousPage();
+
+  if (e.key === "+" || e.key === "=") changeZoom(0.25);
+
+  if (e.key === "-") changeZoom(-0.25);
+
+  if (e.key === "0") resetZoom();
+
+});
+
+
+/* CLOSE WHEN CLICKING OUTSIDE IMAGE */
+
+lightbox.addEventListener("click", function(e) {
+
+  if (
+    e.target === lightbox
+  ) {
+    closeImage();
+  }
+
+});
+
+
+/* REFLEX GAME */
+
+let score = 0;
+let gameRunning = false;
+let gameTimer;
+
+function startGame() {
+
+  score = 0;
+
+  gameRunning = true;
+
+  document.getElementById("score").textContent = "SCORE: 0";
+
+  document.getElementById("gameMessage").textContent =
+    "GO! CATCH THE ENERGY!";
+
+  const target = document.getElementById("target");
+
+  target.style.display = "block";
+
+  clearTimeout(gameTimer);
+
+  gameTimer = setTimeout(() => {
+
+    gameRunning = false;
+
+    target.style.display = "none";
+
+    document.getElementById("gameMessage").textContent =
+      "GAME OVER! FINAL SCORE: " + score;
+
+  }, 15000);
+
+}
+
+function catchOrb() {
+
+  if (!gameRunning) return;
+
+  score++;
+
+  document.getElementById("score").textContent =
+    "SCORE: " + score;
+
+  const emojis = ["🔵", "🔴", "⚡", "💎", "⭐"];
+
+  document.getElementById("target").textContent =
+    emojis[Math.floor(Math.random() * emojis.length)];
+
+  document.getElementById("gameMessage").textContent =
+    "NICE MOVE! KEEP GOING!";
+
+}
+
+
+/* Removed periodic full-page flashing for smoother performance. */
+
+</script>
+
+</body>
+</html>
